@@ -19,7 +19,7 @@ function reducer(state, action) {
     case "dataRecived":
       return {
         ...state,
-        questions: action.payload,
+        questions: action.payload.questions,
         status: "ready",
       };
     case "dataFailed":
@@ -84,7 +84,7 @@ function QuizeProvider({ children }) {
   );
 
   useEffect(function () {
-    fetch("http://localhost:8000/questions")
+    fetch("https://mp4cb8174d1a101dfe91.free.beeceptor.com/data")
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataRecived", payload: data }))
       .catch((err) => dispatch({ type: "dataFailed" }));
